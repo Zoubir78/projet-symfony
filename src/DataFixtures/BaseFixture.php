@@ -45,7 +45,7 @@ abstract class BaseFixture extends Fixture
      * @param int $count        nombre d'entités à générer
      * @param callable $factory fonction qui génère 1 entité
      */
-    protected function createMany(int $count, string $groupName, callable $factory)
+    protected function createMany(int $count, callable $factory)
     {
         for ($i = 0; $i < $count; $i++) {
             // On exécute $factory qui doit retourner l'entité générée
