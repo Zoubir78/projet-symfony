@@ -11,118 +11,72 @@
                 </p>
             </a>
 
-            {# <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
-            </a> #}
+            </a>
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
-            <section class="hero is-info is-fullheight">
-                <div class="hero-head">
-                    <nav class="navbar">
-                        <div class="container">
-                            <div class="navbar-brand">
-                                <span class="navbar-burger burger" data-target="navbarMenu">
-                                    <span aria-hidden="true"></span>
-                                    <span aria-hidden="true"></span>
-                                    <span aria-hidden="true"></span>
+            <section class="hero is-info">
+                <nav class="navbar">
+                    <div class="container">
+                        <div id="navbarMenu" class="navbar-menu">
+                            <div class="navbar-end">
+                                <span class="navbar-item">
+                                    <a class="button is-white is-outlined" href="#">
+                                        <span class="icon">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </span>
+                                        <span>Mes événements</span>
+                                    </a>
                                 </span>
-                            </div>
-                            <div id="navbarMenu" class="navbar-menu">
-                                <div class="navbar-end">
-                                    <span class="navbar-item">
-                                        <a class="button is-white is-outlined" href="#">
-                                            <span class="icon">
-                                                <i class="fas fa-clipboard-list"></i>
-                                            </span>
-                                            <span>Mes événements</span>
-                                        </a>
-                                    </span>
-                                    <span class="navbar-item">
-                                        <a class="button is-white is-outlined" href="#">
-                                            <span class="icon">
-                                                <i class="fas fa-calendar-plus"></i>
-                                            </span>
-                                            <span>Nouvel événement</span>
-                                        </a>
-                                    </span>
-                                    <span class="navbar-item">
-                                        <a class="button is-white is-outlined" href="#">
-                                            <span class="icon">
-                                                <i class="fas fa-newspaper"></i>
-                                            </span>
-                                            <span>Participations</span>
-                                        </a>
-                                    </span>                               
-                                    <div class="navbar-end">
-                                        <div class="navbar-item">
-                                            <div class="buttons">
-                                                {% if app.user %}
-                                                    {# <a class="button is-primary is-small" href="{{ path('account_profile') }}">
-                                                        <span class="icon"><i class="fas fa-user-circle"></i></span>
-                                                        <strong>{{ app.user.pseudo }}</strong>
-                                                    </a> #}
-                                                    <a class="button is-light is-small" href="{{ path('app_logout') }}">
-                                                        Déconnexion
-                                                    </a>
-                                                {% else %}
-                                                    {# <a class="button is-primary is-small" href="{{ path('app_register') }}">
-                                                        <strong>Inscription</strong>
-                                                    </a> #}
-                                                    <a class="button is-light is-small" href="{{ path('app_login') }}">
-                                                        Connexion
-                                                    </a>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                        <a class="navbar-item">
-                                            <form action="#">
-                                                <div class="field has-addons">
-                                                    <div class="control is-expanded">
-                                                        <input name="query" type="text" class="input is-small" placeholder="Recherche ..." required>
-                                                    </div>
-                                                    <div class="control">
-                                                        <button type="submit" class="button is-primary is-small">
-                                                            <i class="fas fa-search"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-
-                    <div class="hero-body">
-                        <div class="container has-text-centered">
-                            <div class="column is-6 is-offset-3">
-                                <h1 class="title">
-                                    Coming Soon
-                                </h1>
-                                <h2 class="subtitle">
-                                    Accueil
-                                </h2>
-                                <div class="box">
-                                    <div class="field is-grouped">
-                                        <p class="control is-expanded">
-                                            <input class="input" type="text" placeholder="Enter your email">
-                                        </p>
-                                        <p class="control">
-                                            <a class="button is-info">
-                                                Notify Me
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
+                                <span class="navbar-item">
+                                    <a class="button is-white is-outlined" href="#">
+                                        <span class="icon">
+                                            <i class="fas fa-calendar-plus"></i>
+                                        </span>
+                                        <span>Nouvel événement</span>
+                                    </a>
+                                </span>
+                                <span class="navbar-item">
+                                    <a class="button is-white is-outlined" href="#">
+                                        <span class="icon">
+                                            <i class="fas fa-newspaper"></i>
+                                        </span>
+                                        <span>Participations</span>
+                                    </a>
+                                </span>                               
                             </div>
                         </div>
                     </div>
-                </div>
+                </nav>
             </section>
+        </div>
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    {% if app.user %}
+                        {# <a class="button is-primary is-small" href="{{ path('account_profile') }}">
+                            <span class="icon"><i class="fas fa-user-circle"></i></span>
+                            <strong>{{ app.user.pseudo }}</strong>
+                        </a> #}
+                        <a class="button is-light is-small" href="{{ path('app_logout') }}">
+                            <span class="icon">
+                                <i class="fas fa-sign-out"></i>
+                            </span>
+                        </a>
+                    {% else %}
+                        <a class="button is-primary is-small" href="{{ path('app_register') }}">
+                            <strong>Inscription</strong>
+                        </a>
+                        <a class="button is-light is-small" href="{{ path('app_login') }}">
+                            Connexion
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </nav>
 
