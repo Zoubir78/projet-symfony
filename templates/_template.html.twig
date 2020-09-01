@@ -3,7 +3,6 @@
 
 {% block body %}
 
-    {# Menu qui sera affiché sur toutes les pages du Front-Office #}
     <nav class="navbar has-background-grey-darker is-dark">
         <div class="navbar-brand">
             <a class="navbar-item" href="{{ path('homepage') }}">
@@ -12,11 +11,11 @@
                 </p>
             </a>
 
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            {# <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
-            </a>
+            </a> #}
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
@@ -25,13 +24,10 @@
                     <nav class="navbar">
                         <div class="container">
                             <div class="navbar-brand">
-                                <a class="navbar-item" href="../">
-                                    <img src="http://bulma.io/images/bulma-type-white.png" alt="Logo">
-                                </a>
                                 <span class="navbar-burger burger" data-target="navbarMenu">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
+                                    <span aria-hidden="true"></span>
+                                    <span aria-hidden="true"></span>
+                                    <span aria-hidden="true"></span>
                                 </span>
                             </div>
                             <div id="navbarMenu" class="navbar-menu">
@@ -39,23 +35,15 @@
                                     <span class="navbar-item">
                                         <a class="button is-white is-outlined" href="#">
                                             <span class="icon">
-                                                <i class="fa fa-home"></i>
+                                                <i class="fas fa-clipboard-list"></i>
                                             </span>
-                                            <span>Home</span>
+                                            <span>Mes événements</span>
                                         </a>
                                     </span>
                                     <span class="navbar-item">
                                         <a class="button is-white is-outlined" href="#">
                                             <span class="icon">
-                                                <i class="fa fa-superpowers"></i>
-                                            </span>
-                                            <span>Evénements</span>
-                                        </a>
-                                    </span>
-                                    <span class="navbar-item">
-                                        <a class="button is-white is-outlined" href="#">
-                                            <span class="icon">
-                                                <i class="fa fa-book"></i>
+                                                <i class="fas fa-calendar-plus"></i>
                                             </span>
                                             <span>Nouvel événement</span>
                                         </a>
@@ -63,12 +51,12 @@
                                     <span class="navbar-item">
                                         <a class="button is-white is-outlined" href="#">
                                             <span class="icon">
-                                                <i class="fa fa-github"></i>
+                                                <i class="fas fa-newspaper"></i>
                                             </span>
-                                            <span>View Source</span>
+                                            <span>Participations</span>
                                         </a>
-                                    </span>
-                                      <div class="navbar-end">
+                                    </span>                               
+                                    <div class="navbar-end">
                                         <div class="navbar-item">
                                             <div class="buttons">
                                                 <a class="button is-primary is-small" href="#">
