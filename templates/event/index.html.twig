@@ -10,30 +10,34 @@
         {# Inclusion du fichier des messages flash #}
         {% include 'includes/flash.html.twig' %}
 
-        <a href="{{ path('event_ajout') }}" class="btn btn-info">Nouvel événement</a>
+        <a href="{{ path('event_ajout') }}" class="button is-info">Nouvel événement:</a>
 
-        <table border="1" class="table">
+        <table class="table">
             <thead>
             <tr>
                 <th>#</th>
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Lieu</th>
-                {# <th>Date</th> #}
+                <th>Date</th>
                 <th>Modifier / Supprimer</th>
             </tr>
             </thead>
             <tbody>
             {% for event in liste_evenements %}    
-                <tr>
+                <tr class="is-selected">
                     <th>{{ event.id }}</th>
-                    <td>{{ event.name }}</td>
+                    <td>
+                        <a href="#">
+                        {{ event.name }}
+                        </a>
+                    </td>
                     <td>{{ event.description }}</td>
                     <td>{{ event.place }}</td>
-                    <td>{{ event.createdAt }}</td>
+                    <td>{{ event.createdAt | date('d-m-Y')}}</td>
                     <td>
-                        <a href="{{ path('event_modif', {id: event.id}) }}" class="btn btn-success">Modifier</a>
-                        <a href="{{ path('event_supprimer', {id: event.id}) }}" class="btn btn-danger">Supprimer</a>
+                        <a href="{{ path('event_modif', {id: event.id}) }}" class="button is-success">Modifier</a>
+                        <a href="{{ path('event_supprimer', {id: event.id}) }}" class="button is-danger">Supprimer</a>
                     </td>
                 </tr>
             {% endfor %}

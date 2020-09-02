@@ -54,7 +54,7 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    {% if app.user %}
+                    {% if is_granted('ROLE_USER') %}
                         <a class="button is-primary is-small" href="{{ path('profile_edit') }}">
                             <span class="icon">
                                 <i class="fas fa-user-circle"></i>
@@ -63,7 +63,7 @@
                         </a>
                         <a class="button is-white is-small" href="{{ path('app_logout') }}">
                             <span class="icon">
-                                <i class="fas fa-sign-out"></i>
+                                <i class="fa fa-power-off"></i>
                             </span>
                         </a>
                     {% else %}
@@ -83,8 +83,6 @@
 {% endblock %}
 
 
-
-    
 
    
    

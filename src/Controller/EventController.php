@@ -27,7 +27,7 @@ class EventController extends AbstractController
     }
 
     /**
-     * page d'ajour des événements
+     * page d'ajout des événements
      * @Route("/ajout", name="ajout")
      */
     public function ajout(Request $request, EventRepository $repository, EntityManagerInterface $entityManager)
@@ -59,7 +59,7 @@ class EventController extends AbstractController
 
                 //Message flash & redirection
                 $this->addFlash('success', 'L\'événement a été enregistré !');
-                return $this->redirectToRoute('event_list');
+                return $this->redirectToRoute('event_list', ['id' => $event->getId()]);
             }
             // 5) Pour afficher le formulaire, passer le résultat au formulaire
             return $this->render('event/ajout.html.twig', [

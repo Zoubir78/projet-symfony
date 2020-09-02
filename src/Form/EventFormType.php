@@ -11,7 +11,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Range;
 
 class EventFormType extends AbstractType
 {
@@ -38,11 +37,7 @@ class EventFormType extends AbstractType
             ->add('createdAt', DateType::class, [
                 'widget' => 'single_text',
                 'constraints' => [
-                    new NotBlank(['message' => 'Date de création manquante.']),
-                    new Range([
-                        'max' => new \DateTime(),
-                        'maxMessage' => 'La date ne peut être future.'
-                    ])
+                    new NotBlank(['message' => 'Date de création manquante.'])
                 ]
             ])
         ;
