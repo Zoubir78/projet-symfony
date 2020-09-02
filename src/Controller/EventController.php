@@ -6,6 +6,7 @@ use App\Entity\Event;
 use App\Form\EventFormType;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -72,6 +73,7 @@ class EventController extends AbstractController
      * Modification d'un événement
      * @Route("/{id}", name="modif")
      * le composant ParamConverter va convertir le paramètre id en l'entité associée
+     * @IsGranted("EVENT_EDIT", subject="event")
      */
     public function modification(Event $event, Request $request, EntityManagerInterface $entityManager)
     {
@@ -97,6 +99,7 @@ class EventController extends AbstractController
     /**
      * Suppression d'un événement
      * @Route("/{id}/supprimer", name="supprimer")
+     * @IsGranted("EVENT_DELETE", subject="event")
      */
     public function supprimer(Event $event, EntityManagerInterface $entityManager)
     {
