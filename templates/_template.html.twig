@@ -7,7 +7,7 @@
         <div class="navbar-brand">
             <a class="navbar-item" href="{{ path('homepage') }}">
                 <p class="subtitle is-4 has-text-primary">
-                    <i class="fab fa-korvue"></i><b>VENTS</b>
+                    <i class="fa fa-calendar-check-o" style="font-size:36px;color:yellow"></i> <b>MY-EVENT</b>
                 </p>
             </a>
 
@@ -18,50 +18,47 @@
             </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
-            <section class="hero is-info">
-                <nav class="navbar">
-                    <div class="container">
-                        <div id="navbarMenu" class="navbar-menu">
-                            <div class="navbar-end">
-                                <span class="navbar-item">
-                                    <a class="button is-white is-outlined" href="#">
-                                        <span class="icon">
-                                            <i class="fas fa-clipboard-list"></i>
-                                        </span>
-                                        <span>Mes événements</span>
-                                    </a>
+        <section class="hero info">
+            <nav class="navbar">
+                <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <span class="navbar-item">
+                            <a class="button is-white is-outlined" href="{{ path('event_list') }}">
+                                <span class="icon">
+                                    <i class="fas fa-clipboard-list"></i>
                                 </span>
-                                <span class="navbar-item">
-                                    <a class="button is-white is-outlined" href="#">
-                                        <span class="icon">
-                                            <i class="fas fa-calendar-plus"></i>
-                                        </span>
-                                        <span>Nouvel événement</span>
-                                    </a>
+                                <span>Mes événements</span>
+                            </a>
+                        </span>
+                        <span class="navbar-item">
+                            <a class="button is-white is-outlined" href="{{ path('new_event') }}">
+                                <span class="icon">
+                                    <i class="fas fa-calendar-plus"></i>
                                 </span>
-                                <span class="navbar-item">
-                                    <a class="button is-white is-outlined" href="#">
-                                        <span class="icon">
-                                            <i class="fas fa-newspaper"></i>
-                                        </span>
-                                        <span>Participations</span>
-                                    </a>
-                                </span>                               
-                            </div>
-                        </div>
+                                <span>Nouvel événement</span>
+                            </a>
+                        </span>
+                        <span class="navbar-item">
+                            <a class="button is-white is-outlined" href="{{ path('participate') }}">
+                                <span class="icon">
+                                    <i class="fas fa-newspaper"></i>
+                                </span>
+                                <span>Participations</span>
+                            </a>
+                        </span>                               
                     </div>
-                </nav>
-            </section>
-        </div>
+                </div>
+            </nav>
+        </section>
+
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
                     {% if app.user %}
-                        {# <a class="button is-primary is-small" href="{{ path('account_profile') }}">
+                        <a class="button is-primary is-small" href="{{ path('profile_edit') }}">
                             <span class="icon"><i class="fas fa-user-circle"></i></span>
-                            <strong>{{ app.user.pseudo }}</strong>
-                        </a> #}
+                            <strong>{{ app.user.email }}</strong>
+                        </a>
                         <a class="button is-light is-small" href="{{ path('app_logout') }}">
                             <span class="icon">
                                 <i class="fas fa-sign-out"></i>
