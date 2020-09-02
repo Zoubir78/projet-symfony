@@ -1,0 +1,44 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}Evenements{% endblock %}
+
+{% block content %}
+    <div class="section">
+
+        <h1 class="title">Evénements: {{ liste_evenements|length }} </h1>
+
+        {# Inclusion du fichier des messages flash #}
+        {% include 'includes/flash.html.twig' %}
+
+        <a href="{{ path('event_ajout') }}" class="btn btn-info">Nouvel événement</a>
+
+        <table border="1" class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Lieu</th>
+                {# <th>Date</th> #}
+                <th>Modifier / Supprimer</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in liste_evenements %}    
+                <tr>
+                    <th>{{ event.id }}</th>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.description }}</td>
+                    <td>{{ event.place }}</td>
+                    <td>{{ event.createdAt }}</td>
+                    <td>
+                        <a href="{{ path('event_modif', {id: event.id}) }}" class="btn btn-success">Modifier</a>
+                        <a href="{{ path('event_supprimer', {id: event.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table> 
+    </div>
+
+{% endblock %}

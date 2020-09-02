@@ -1,0 +1,19 @@
+  
+{% extends "_template.html.twig" %}
+
+{% block title %}
+    Produit {{ event.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+
+        <h1 class="title">Evénement {{ event.name }}</h1>
+
+        {% include 'includes/flash.html.twig' %}
+        
+        {% include 'event/_event_form.html.twig' %}
+
+    </div>
+
+{% endblock %}

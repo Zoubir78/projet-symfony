@@ -1,0 +1,13 @@
+{{ form_start(event_form) }}
+
+    {{ form_row(event_form.name, {label: "Nom de l'événemnt:"}) }}
+
+    {{ form_row(event_form.description, { label: "Description:"}) }}
+    
+    {{ form_row(event_form.place, {label: "Lieu:"}) }}
+
+    {{ form_row(event_form.createdAt, {label: "Date:", placeholder: "jj/mm/aa"}) }}
+
+    <button type="submit" class="button is-info is-fullwidth">Organiser</button>
+
+{{ form_end(event_form) }}

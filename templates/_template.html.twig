@@ -23,7 +23,7 @@
                 <div id="navbarMenu" class="navbar-menu">
                     <div class="navbar-end">
                         <span class="navbar-item">
-                            <a class="button is-white is-outlined" href="{{ path('event_list') }}">
+                            <a class="button is-white is-outlined" href="{{ path('event_list') }}"> 
                                 <span class="icon">
                                     <i class="fas fa-clipboard-list"></i>
                                 </span>
@@ -31,7 +31,7 @@
                             </a>
                         </span>
                         <span class="navbar-item">
-                            <a class="button is-white is-outlined" href="{{ path('new_event') }}">
+                            <a class="button is-white is-outlined" href="{{ path('event_ajout') }}">
                                 <span class="icon">
                                     <i class="fas fa-calendar-plus"></i>
                                 </span>
@@ -39,7 +39,7 @@
                             </a>
                         </span>
                         <span class="navbar-item">
-                            <a class="button is-white is-outlined" href="{{ path('participate') }}">
+                            <a class="button is-white is-outlined" href="#">
                                 <span class="icon">
                                     <i class="fas fa-newspaper"></i>
                                 </span>
@@ -56,10 +56,12 @@
                 <div class="buttons">
                     {% if app.user %}
                         <a class="button is-primary is-small" href="{{ path('profile_edit') }}">
-                            <span class="icon"><i class="fas fa-user-circle"></i></span>
+                            <span class="icon">
+                                <i class="fas fa-user-circle"></i>
+                            </span>
                             <strong>{{ app.user.email }}</strong>
                         </a>
-                        <a class="button is-light is-small" href="{{ path('app_logout') }}">
+                        <a class="button is-white is-small" href="{{ path('app_logout') }}">
                             <span class="icon">
                                 <i class="fas fa-sign-out"></i>
                             </span>
