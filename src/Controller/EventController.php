@@ -30,20 +30,20 @@ class EventController extends AbstractController
     /**
      * page d'ajout des événements
      * @Route("/ajout", name="ajout")
+     * @IsGranted("ROLE_USER")
      */
     public function ajout(Request $request, EventRepository $repository, EntityManagerInterface $entityManager)
     {
         // Afficher le formulaire uniquement si l'utilisateur est connecté
         if ($this->getUser()) {
-            // Rechercher une note déjà existante pour la modifier
+            
             $event = $repository->findOneBy([
                 'author' => $this->getUser()
             ]);
 
             // Si l'événement n'existe pas, on en crée un
             $event = $event ?? (new Event())
-                ->setAuthor($this->getUser())
-                ->setCreatedAt(new \DateTime());
+                ->setAuthor($this->getUser());
 
             $form = $this->createForm(EventFormType::class, $event);
 
@@ -64,6 +64,7 @@ class EventController extends AbstractController
             }
             // 5) Pour afficher le formulaire, passer le résultat au formulaire
             return $this->render('event/ajout.html.twig', [
+                'event' => $event,
                 'event_form' => $form->createView()
             ]);
         }
@@ -77,14 +78,11 @@ class EventController extends AbstractController
      */
     public function modification(Event $event, Request $request, EntityManagerInterface $entityManager)
     {
-        // On passe l'entité à modifier en 2ème argument (arg. "data")
-        // Pour que l'objet soit directement modifier et pour pré-remplir le formulaire
         $form = $this->createForm(EventFormType::class, $event);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            // Il n'est pas nécessaire de récupèrer les données du formulaire: l'entité a été modifiée par celui-ci
-            // On appelle pas non plus $entityManager->persist() car Doctrine connait déjà l'existance de l'entité 
+            
             $entityManager->flush();
             $this->addFlash('success', 'L\'événement a été mis à jour.');
             return $this->redirectToRoute('event_list');
@@ -111,5 +109,29 @@ class EventController extends AbstractController
         $this->addFlash('info', 'L\'événement a été supprimé.');
         return $this->redirectToRoute('event_list');
     }
+
+    /**
+     * Page d'un événement
+     * @Route("/{id}/page", name="page")
+     */
+    public function eventPage(Event $event)
+    {
+        return $this->render('event/event_page.html.twig', [
+            'event' => $event
+        ]);
+    }
+
+       /**
+     * Page de participation pour un événement
+     * @Route("/{id}/page", name="participate")
+     */
+    public function eventParticipte(EventRepository $repository)
+    {
+        return $this->render('event/event_participate.html.twig', [
+            'liste_participations' => $repository->findAll(),
+        ]);
+    }
+
+
 }
 

@@ -1,16 +1,16 @@
 {% extends "_template.html.twig" %}
 
-{% block title %}Evenements{% endblock %}
+{% block title %}Participations{% endblock %}
 
 {% block content %}
     <div class="section">
 
-        <h1 class="title">Evénements: {{ liste_evenements|length }} </h1>
+        <h1 class="title">Evénements: {{ liste_participations|length }} </h1>
 
         {# Inclusion du fichier des messages flash #}
         {% include 'includes/flash.html.twig' %}
 
-        <a href="{{ path('event_ajout') }}" class="button is-info">Nouvel événement:</a>
+        <a href="{{ path('event_participate') }}" class="button is-info">Nouvel événement:</a>
 
         <table class="table">
             <thead>
@@ -20,7 +20,7 @@
                 <th>Description</th>
                 <th>Lieu</th>
                 <th>Date</th>
-                <th>Modifier / Supprimer</th>
+                <th>Annuler</th>
             </tr>
             </thead>
             <tbody>
@@ -36,8 +36,7 @@
                     <td>{{ event.place }}</td>
                     <td>{{ event.createdAt | date('d-m-Y')}}</td>
                     <td>
-                        <a href="{{ path('event_modif', {id: event.id}) }}" class="button is-success">Modifier</a>
-                        <a href="{{ path('event_supprimer', {id: event.id}) }}" class="button is-danger">Supprimer</a>
+                        <a href="{{ path('event_annuler', {id: event.id}) }}" class="button is-danger">Annuler</a>
                     </td>
                 </tr>
             {% endfor %}
