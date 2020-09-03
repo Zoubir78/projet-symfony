@@ -35,7 +35,7 @@ class Event
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private $date;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="events")
@@ -84,14 +84,14 @@ class Event
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->date;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->createdAt = $createdAt;
+        $this->date = $date;
 
         return $this;
     }

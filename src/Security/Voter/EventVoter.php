@@ -16,7 +16,7 @@ class EventVoter extends Voter
     {
          // Le voter ne doit intervenir que s'il s'agit de l'attribut (similaire à un role) 
         // et si le sujet (ce sur quoi on vérifie le droit) est une instance de Event
-        return $attribute === 'EVENT_DELETE, EVENT_EDIT'
+        return in_array($attribute, ['EVENT_DELETE, EVENT_EDIT'])
             && $subject instanceof Event;
     }
 

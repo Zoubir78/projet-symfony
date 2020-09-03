@@ -39,7 +39,7 @@
                             </a>
                         </span>
                         <span class="navbar-item">
-                            <a class="button is-white is-outlined" href="#">
+                            <a class="button is-white is-outlined" href="{{ path('participe') }}">
                                 <span class="icon">
                                     <i class="fas fa-newspaper"></i>
                                 </span>
@@ -59,7 +59,7 @@
                             <span class="icon">
                                 <i class="fas fa-user-circle"></i>
                             </span>
-                            <strong>{{ app.user.email }}</strong>
+                            <strong>{{ app.user.pseudo }}</strong>
                         </a>
                         <a class="button is-white is-small" href="{{ path('app_logout') }}">
                             <span class="icon">

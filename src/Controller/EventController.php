@@ -120,18 +120,5 @@ class EventController extends AbstractController
             'event' => $event
         ]);
     }
-
-       /**
-     * Page de participation pour un événement
-     * @Route("/{id}/page", name="participate")
-     */
-    public function eventParticipte(EventRepository $repository)
-    {
-        return $this->render('event/event_participate.html.twig', [
-            'liste_participations' => $repository->findAll(),
-        ]);
-    }
-
-
 }
 

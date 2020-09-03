@@ -28,21 +28,21 @@ class UserProfileFormType extends AbstractType
                     new Email(['message' => 'Cette adresse n\'est pas une adresse email valide.'])
                 ]
             ])
-            // ->add('pseudo', TextType::class, [
-            //     'constraints' => [
-            //         new NotBlank(['message' => 'Pseudo manquant.']),
-            //         new Length([
-            //             'min' => 3,
-            //             'minMessage' => 'Le pseudo doit contenir au moins {{ limit }} caractères.',
-            //             'max' => 30,
-            //             'maxMessage' => 'Le pseudo ne peut contenir plus de {{ limit }} caractères.'
-            //         ]),
-            //         new Regex([
-            //             'pattern' => '/^[a-zA-Z0-9_-]+$/',
-            //             'message' => 'Le pseudo ne peut contenir que des chiffres, lettres, tirets et underscores.'
-            //         ])
-            //     ]
-            // ])
+            ->add('pseudo', TextType::class, [
+                'constraints' => [
+                    new NotBlank(['message' => 'Pseudo manquant.']),
+                    new Length([
+                        'min' => 3,
+                        'minMessage' => 'Le pseudo doit contenir au moins {{ limit }} caractères.',
+                        'max' => 30,
+                        'maxMessage' => 'Le pseudo ne peut contenir plus de {{ limit }} caractères.'
+                    ]),
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z0-9_-]+$/',
+                        'message' => 'Le pseudo ne peut contenir que des chiffres, lettres, tirets et underscores.'
+                    ])
+                ]
+            ])
         ;
     }
 

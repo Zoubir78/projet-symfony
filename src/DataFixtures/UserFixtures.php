@@ -29,6 +29,7 @@ class UserFixtures extends BaseFixture
                 ->setEmail('admin@events.fr')
                 ->setRoles(['ROLE_ADMIN'])
                 ->setPassword($password)
+                ->setPseudo('admin_' . $num)
             ;
         });
 
@@ -40,6 +41,7 @@ class UserFixtures extends BaseFixture
             return $user
                 ->setEmail('user' . $num . '@events.fr')
                 ->setPassword($password)
+                ->setPseudo('user_' . $num)
             ;
         });
     }

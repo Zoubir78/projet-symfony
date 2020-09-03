@@ -34,7 +34,7 @@ class EventFormType extends AbstractType
                     new NotBlank(['message' => 'Le champ lieu est manquant.'])
                 ]
             ])
-            ->add('createdAt', DateType::class, [
+            ->add('date', DateType::class, [
                 'widget' => 'single_text',
                 'constraints' => [
                     new NotBlank(['message' => 'Date de création manquante.'])

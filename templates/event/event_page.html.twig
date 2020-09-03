@@ -6,11 +6,20 @@
 
 {% block content %}
     <div class="section">
-        <h1 class="title">Evenement: {{ event.name }}</h1>
+        <div class="columns">
+            <div class="column is-two-fifth">
+                <figure class="image is-1by1">
+                    <img src="https://loremflickr.com/1024/1024/event/all?lock={{ event.id }}">
+                </figure>
+            </div>
+            <div class="section">
+                <h1 class="title">Evenement: {{ event.name }}</h1>
 
-        <h3 class="subtitle">Description: {{ event.description }}</h3>
-        <h5 class="subtitle">Date: {{ event.createdAt | date('d-m-Y')}}</h5>
+                <h3 class="subtitle">Description: {{ event.description }}</h3>
+                <h5 class="subtitle">Date: {{ event.date | date('d-m-Y')}}</h5>
 
-        <a href="#" class="button is-info">Participer</a>
+                <a href="{{ path('participe') }}" class="button is-info">Je participe !</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

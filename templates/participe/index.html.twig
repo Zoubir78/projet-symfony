@@ -5,14 +5,12 @@
 {% block content %}
     <div class="section">
 
-        <h1 class="title">Evénements: {{ liste_participations|length }} </h1>
+        <h1 class="title">Mes participations: {{ liste_participations|length }}</h1>
 
         {# Inclusion du fichier des messages flash #}
         {% include 'includes/flash.html.twig' %}
 
-        <a href="{{ path('event_participate') }}" class="button is-info">Nouvel événement:</a>
-
-        <table class="table">
+        <table class="table is-fullwidth">
             <thead>
             <tr>
                 <th>#</th>
@@ -24,7 +22,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for event in liste_evenements %}    
+            {% for event in liste_participations %}    
                 <tr class="is-selected">
                     <th>{{ event.id }}</th>
                     <td>
@@ -34,10 +32,10 @@
                     </td>
                     <td>{{ event.description }}</td>
                     <td>{{ event.place }}</td>
-                    <td>{{ event.createdAt | date('d-m-Y')}}</td>
-                    <td>
+                    <td>{{ event.date | date('d-m-Y')}}</td>
+                    {# <td>
                         <a href="{{ path('event_annuler', {id: event.id}) }}" class="button is-danger">Annuler</a>
-                    </td>
+                    </td> #}
                 </tr>
             {% endfor %}
             </tbody>
