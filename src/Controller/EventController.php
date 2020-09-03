@@ -73,7 +73,6 @@ class EventController extends AbstractController
     /**
      * Modification d'un événement
      * @Route("/{id}", name="modif")
-     * le composant ParamConverter va convertir le paramètre id en l'entité associée
      * @IsGranted("EVENT_EDIT", subject="event")
      */
     public function modification(Event $event, Request $request, EntityManagerInterface $entityManager)

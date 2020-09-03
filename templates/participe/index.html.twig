@@ -33,9 +33,9 @@
                     <td>{{ event.description }}</td>
                     <td>{{ event.place }}</td>
                     <td>{{ event.date | date('d-m-Y')}}</td>
-                    {# <td>
-                        <a href="{{ path('event_annuler', {id: event.id}) }}" class="button is-danger">Annuler</a>
-                    </td> #}
+                    <td>
+                        <a href="{{ path('annuler', {id: event.id}) }}" class="button is-danger">Annuler</a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
