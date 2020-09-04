@@ -20,16 +20,16 @@ class ParticipeController extends AbstractController
     public function participePage(Event $event, EventRepository $repository, Request $request, EntityManagerInterface $entityManager)
     {
         if ($this->getUser()) {
-            // $participe = $repository->findOneBy([
+            // $event = $event->findOneBy([
             //     'author' => $this->getUser(),
             //     'events' => $event,
             // ]);
 
             // Si la participation n'existe pas, on en crée une nouvelle
-            // $event = $event ?? (new Event())
-            //     ->setAuthor($this->getUser())
-            //     ->setEvent($event)
-            //     ->setDate(new \DateTime());
+            $event = $event ?? (new Event())
+                ->setAuthor($this->getUser())
+                // ->setEvents($event)
+                ->setDate(new \DateTime());
 
             // $this->handleRequest($request);
 

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Form\InviteFormType;
 use App\Form\EventFormType;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -112,6 +113,27 @@ class EventController extends AbstractController
     {
         return $this->render('event/event_page.html.twig', [
             'event' => $event
+        ]);
+    }
+
+     /**
+     * @Route("/invite/{id}", name="invite")
+     * @IsGranted("ROLE_USER")
+     */
+    public function inviter(Event $event, Request $request, EntityManagerInterface $entityManager)
+    {
+        $inviteForm = $this->createForm(InviteFormType::class, $this->getUser());
+        $inviteForm->handleRequest($request);
+
+        if ($inviteForm->isSubmitted() && $inviteForm->isValid()) {
+            $event = $inviteForm->getData();
+            $entityManager->flush();
+            
+            $this->addFlash('success', 'Votre invitation a été envoyée.');
+        }
+        return $this->render('event/event_page.html.twig', [
+            'event' => $event,
+            'invite_form' => $inviteForm->createView(),
         ]);
     }
 }

@@ -22,7 +22,7 @@
             </thead>
             <tbody>
             {% for event in liste_participations %}    
-                <tr class="is-selected">
+                <tr>
                     <th>{{ event.id }}</th>
                     <td>
                         <a href="{{ path('event_page', {id: event.id}) }}">

@@ -18,7 +18,7 @@
                 <h3 class="subtitle">Description: <i>{{ event.description }}</i></h3>
                 <h5 class="subtitle">Date: {{ event.date | date('d-m-Y')}}</h5>
 
-                <a href="{{ path('participe', {id: event.id, token: csrf_token('add_event')}) }}" class="button is-info is-fullwidth">Je participe !</a>
+                <a href="{{ path('participe', {id: event.id}) }}" class="button is-info is-fullwidth">Je participe !</a>
             </div>
             <div class="column">
                 <h2 class="subtitle">Invitations</h2>
@@ -26,15 +26,17 @@
                 
                 {% include 'includes/flash.html.twig' %}
 
+                {% if invite_form is defined %}
                     {{ form_start(invite_form) }}
 
                     {{ form_row(invite_form.email, {
                         label: 'Adresse email:'
                     }) }}
 
-                    <a href="{{ path('participe', {id: event.id, token: csrf_token('add_event')}) }}" class="button is-info is-fullwidth">Inviter un ami</a>
+                    <a href="{{ path('participe', {id: event.id}) }}" class="button is-info is-fullwidth">Inviter un ami !</a>
 
                     {{ form_end(invite_form) }}
+                {% endif %}
             </div>
         </div>
     </div>
