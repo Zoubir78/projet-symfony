@@ -34,7 +34,6 @@ class EventController extends AbstractController
      */
     public function ajout(Request $request, EventRepository $repository, EntityManagerInterface $entityManager)
     {
-        // Afficher le formulaire uniquement si l'utilisateur est connecté
         if ($this->getUser()) {
             
             $event = $repository->findOneBy([
@@ -49,9 +48,7 @@ class EventController extends AbstractController
 
             $form->handleRequest($request);
 
-            if($form->isSubmitted() && $form->isValid()){
-
-                // 4) Récupèrer les données du formulaire
+            if ($form->isSubmitted() && $form->isValid()) {
                 $event = $form->getData();
                 // dd($event);
 
@@ -62,7 +59,6 @@ class EventController extends AbstractController
                 $this->addFlash('success', 'L\'événement a été enregistré !');
                 return $this->redirectToRoute('event_list', ['id' => $event->getId()]);
             }
-            // 5) Pour afficher le formulaire, passer le résultat au formulaire
             return $this->render('event/ajout.html.twig', [
                 'event' => $event,
                 'event_form' => $form->createView()
@@ -73,7 +69,6 @@ class EventController extends AbstractController
     /**
      * Modification d'un événement
      * @Route("/{id}", name="modif")
-     * @IsGranted("EVENT_EDIT", subject="event")
      */
     public function modification(Event $event, Request $request, EntityManagerInterface $entityManager)
     {

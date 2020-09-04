@@ -10,12 +10,11 @@
         {# Inclusion du fichier des messages flash #}
         {% include 'includes/flash.html.twig' %}
        
-        <a href="{{ path('event_ajout') }}" class="button is-info">Nouvel événement:</a>
+        <a href="{{ path('event_ajout') }}" class="button is-info">Organiser un événement</a>
 
         <table class="table is-fullwidth">
             <thead>
             <tr>
-                <th>#</th>
                 <th></th>
                 <th>Nom</th>
                 <th>Description</th>
@@ -27,7 +26,7 @@
             <tbody>
             {% for event in liste_evenements %}    
                 <tr class="table is-fullwidth">
-                    <th>{{ event.id }}</th>
+            
                     <th>{% include 'event/_event.html.twig' %}</th>
                     <td>
                         <a href="{{ path('event_page', {id: event.id}) }}" class="has-text-primary">
@@ -39,10 +38,14 @@
                     <td>{{ event.date | date('d-m-Y')}}</td>
                     <td>
                         <a href="{{ path('event_modif', {id: event.id}) }}" class="button is-success">
-                            <i class="fas fa-edit"></i>
+                            <span class="icon">
+                                <i class="fas fa-edit"></i>
+                            </span>
                         </a>
                         <a href="{{ path('event_supprimer', {id: event.id}) }}" class="button is-danger">
-                            <i class="fas fa-trash-alt"></i>   
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>   
+                            </span>
                         </a>
                     </td>
                 </tr>

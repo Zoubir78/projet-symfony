@@ -19,22 +19,18 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
-    // /**
-    //  * @return Event[] Returns an array of Event objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+  /**
+     * Accueil: événements organisés il y a moins d'un mois
+     */
+    // public function findEvent()
+    // {
+    //     return $this->createQueryBuilder('e')      
+    //         ->where('e.date >= :last_month')
+    //         ->setParameter('last_month', new \DateTime('-1 month'))
+    //         ->orderBy('e.date', 'DESC')
+    //         ->getQuery()
+    //         ->getResult();
+    // }
 
     /*
     public function findOneBySomeField($value): ?Event
