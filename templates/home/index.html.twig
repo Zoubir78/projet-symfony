@@ -13,5 +13,35 @@
         </div>
         {% include 'includes/flash.html.twig' %}
         <br>
+        <div class="section has-background-warning">
+  
+            <h1 class="title">Contact</h1>
+
+                {{ form_start(form) }}
+
+                    {# {{ form_widget(form) }} #}
+
+                    {{ form_row(form.nom, {
+                        'label': "Nom:",
+                        'attr': {'placeholder': 'Jean Doe'}
+                    }) }}
+                    {{ form_row(form.email, {
+                        'label': 'Adresse email:',
+                        'attr': {'placeholder': 'Adresse email ...'}
+                    }) }}
+                    {{ form_row(form.objet,  {
+                        'label': 'Objet:',
+                        'attr': {'placeholder': 'Saisir votre objet'}
+                    }) }}
+                    {{ form_row(form.message,  {
+                        'label': 'Message:',
+                        'attr': {'placeholder': 'Taper votre message ici'}
+                    }) }}
+
+                    <button type="submit" class="button is-success">Envoyer</button>
+
+                {{ form_end(form) }}
+
+        </div>
     </div>
 {% endblock %}
