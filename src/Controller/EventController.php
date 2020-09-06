@@ -33,38 +33,30 @@ class EventController extends AbstractController
      * @Route("/ajout", name="ajout")
      * @IsGranted("ROLE_USER")
      */
-    public function ajout(Request $request, EventRepository $repository, EntityManagerInterface $entityManager)
+    public function ajout(Request $request, EntityManagerInterface $entityManager)
     {
-        if ($this->getUser()) {
-            
-            $event = $repository->findOneBy([
-                'author' => $this->getUser(),
-            ]);
 
-            // Si l'événement n'existe pas, on en crée un
-            $event = $event ?? (new Event())
-                ->setAuthor($this->getUser());
+        $form = $this->createForm(EventFormType::class);
 
-            $form = $this->createForm(EventFormType::class, $event);
+        $form->handleRequest($request);
 
-            $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $event = $form->getData();
-                // dd($event);
+            /** @var Event $event */
+            $event = $form->getData();
+            $event->setAuthor($this->getUser());
+            // dd($event);
 
-                $entityManager->persist($event);
-                $entityManager->flush();
+            $entityManager->persist($event);
+            $entityManager->flush();
 
-                //Message flash & redirection
-                $this->addFlash('success', 'L\'événement a été enregistré !');
-                return $this->redirectToRoute('event_list', ['id' => $event->getId()]);
-            }
-            return $this->render('event/ajout.html.twig', [
-                // 'event' => $event,
-                'event_form' => $form->createView()
-            ]);
+            //Message flash & redirection
+            $this->addFlash('success', 'L\'événement a été enregistré !');
+            return $this->redirectToRoute('event_list', ['id' => $event->getId()]);
         }
+        return $this->render('event/ajout.html.twig', [
+            'event_form' => $form->createView()
+        ]);
     }
 
     /**

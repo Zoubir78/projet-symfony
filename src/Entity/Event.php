@@ -43,11 +43,6 @@ class Event
      */
     private $author;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $token;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -109,18 +104,6 @@ class Event
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
-
-        return $this;
-    }
-
-    public function getToken(): ?string
-    {
-        return $this->token;
-    }
-
-    public function setToken(): self
-    {
-        $this->token = bin2hex(random_bytes(16));
 
         return $this;
     }
