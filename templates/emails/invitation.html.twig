@@ -1,0 +1,37 @@
+{% apply inky_to_html|inline_css(source('@css/foundation-emails.css')) %}
+    <spacer size="16"></spacer>
+
+    <container class="header">
+        <row>
+            <columns>
+                <h1 class="text-center">Hello !</h1>
+            </columns>
+        </row>
+    </container>
+
+    <container class="body-border">
+        <row>
+            <columns>
+                <spacer size="32"></spacer>
+                <center>
+                    <img src="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif">
+                </center>
+                <spacer size="16"></spacer>
+
+                <h5>
+                    Vous avez reçu une invitation sur
+                    <a href="{{ url('homepage') }}">MY-EVENT</a>
+                    pour participer à:
+                </h5>
+                <a href="{{ url('event_page', {id: event.id}) }}">
+                    {{ event.name }}
+                </a>
+                {% if message is not empty %}
+                    <hr>
+                    <p>« {{ message|nl2br }} »</p>
+                {% endif %}
+            </columns>
+        </row>
+        <spacer size="16"></spacer>
+    </container>
+{% endapply %}

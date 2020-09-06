@@ -8,8 +8,11 @@ use App\Form\EventFormType;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -109,21 +112,28 @@ class EventController extends AbstractController
     }
 
      /**
+     * Email d'invitation
      * @Route("/{id}/page", name="page")
      * @IsGranted("ROLE_USER")
      */
-    public function inviter(Event $event, Request $request, EntityManagerInterface $entityManager)
+    public function inviter(Event $event, Request $request, MailerInterface $mailer)
     {
-        $inviteForm = $this->createForm(InviteFormType::class, $this->getUser());
+        $inviteForm = $this->createForm(InviteFormType::class);
         $inviteForm->handleRequest($request);
 
         if ($inviteForm->isSubmitted() && $inviteForm->isValid()) {
-            $email = $inviteForm->getData();
-
-            $entityManager->persist($email);
-            $entityManager->flush();
+            $email = (new TemplatedEmail())
+                ->from(new Address('noreply@evently.com', 'My-Event'))
+                ->to(new Address($inviteForm['email']->getData()))
+                ->subject(sprintf('%s My-Event | Invitation à "%s"', "\u{1F5D3}", $event->getName()))
+                ->htmlTemplate('emails/invitation.html.twig')
+                ->context([
+                    'event' => $event,
+            ]);
             
+            $mailer->send($email);
             $this->addFlash('success', 'Votre invitation a été envoyée.');
+            return $this->redirectToRoute('event_page', ['id' => $event->getId()]);
         }
         return $this->render('event/event_page.html.twig', [
             'event' => $event,

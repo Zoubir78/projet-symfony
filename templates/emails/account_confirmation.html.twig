@@ -1,0 +1,37 @@
+{% apply inky_to_html|inline_css(source('@css/foundation-emails.css')) %}
+    <spacer size="16"></spacer>
+
+    <container class="header">
+        <row>
+            <columns>
+                <h1 class="text-center">Bienvenue, {{ user.pseudo }} !</h1>
+            </columns>
+        </row>
+    </container>
+
+    <container class="body-border">
+        <row>
+            <columns>
+                <spacer size="32"></spacer>
+                <center>
+                    <img src="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif">
+                </center>
+                <spacer size="16"></spacer>
+
+                <h5>
+                    Votre compte sur 
+                    <a href="{{ url('homepage') }}">My-Event</a> 
+                    a bien été créé,
+                    merci de confirmer votre inscription en cliquant sur le lien suivant:
+                </h5>
+                    <a href="{{ url('account_confirmation', {
+                        id: user.id,
+                        token: user.token
+                        }) }}">
+                        Confirmer mon compte
+                    </a>
+            </columns>
+        </row>
+        <spacer size="16"></spacer>
+    </container>
+{% endapply %}

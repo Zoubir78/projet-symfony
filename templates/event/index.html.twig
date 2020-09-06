@@ -27,7 +27,6 @@
                     <tr class="table is-fullwidth has-background-warning">
                 
                         <th>{% include 'event/_event.html.twig' %}</th>
-                        <td>{{ event.id }}</td>
                         <td>
                             <a href="{{ path('event_page', {id: event.id}) }}" class="has-text-primary">
                             <strong>{{ event.name }}</strong>
