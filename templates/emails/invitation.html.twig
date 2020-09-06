@@ -26,10 +26,10 @@
                 <a href="{{ url('event_page', {id: event.id}) }}">
                     {{ event.name }}
                 </a>
-                {% if message is not empty %}
+                {# {% if message is not empty %}
                     <hr>
                     <p>« {{ message|nl2br }} »</p>
-                {% endif %}
+                {% endif %} #}
             </columns>
         </row>
         <spacer size="16"></spacer>

@@ -33,7 +33,7 @@
                         label: 'Adresse email:'
                     }) }}
 
-                    <a href="{{ path('event_page', {id: event.id}) }}" class="button is-info is-fullwidth">Inviter un ami !</a>
+                    <button type="submit" class="button is-info is-fullwidth">Inviter un ami !</button>
 
                     {{ form_end(invite_form) }}
                 {% endif %}

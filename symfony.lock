@@ -102,6 +102,9 @@
     "fzaninotto/faker": {
         "version": "v1.9.1"
     },
+    "lorenzo/pinky": {
+        "version": "1.0.5"
+    },
     "monolog/monolog": {
         "version": "1.25.5"
     },
@@ -159,6 +162,9 @@
             "./bin/console",
             "./config/bootstrap.php"
         ]
+    },
+    "symfony/css-selector": {
+        "version": "v4.4.13"
     },
     "symfony/debug": {
         "version": "v4.4.12"
@@ -455,7 +461,16 @@
     "symfony/yaml": {
         "version": "v4.4.12"
     },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.3"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.0.5"
+    },
     "twig/extra-bundle": {
+        "version": "v3.0.5"
+    },
+    "twig/inky-extra": {
         "version": "v3.0.5"
     },
     "twig/twig": {
