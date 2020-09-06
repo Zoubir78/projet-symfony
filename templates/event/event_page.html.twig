@@ -14,7 +14,7 @@
             </div>
             <div class="column">
                 <h1 class="title">Evenement: {{ event.name }}</h1>
-
+                <br>
                 <h3 class="subtitle">Description: <i>{{ event.description }}</i></h3>
                 <h5 class="subtitle">Date: {{ event.date | date('d-m-Y')}}</h5>
 
@@ -23,9 +23,9 @@
             <div class="column">
                 <h2 class="subtitle">Invitations</h2>
                 <p><i>Inviter un ami pour participer à cet événement ...</i></p>
-                
+                <br>
                 {% include 'includes/flash.html.twig' %}
-
+                <br>
                 {% if invite_form is defined %}
                     {{ form_start(invite_form) }}
 
@@ -33,7 +33,7 @@
                         label: 'Adresse email:'
                     }) }}
 
-                    <a href="{{ path('participe', {id: event.id}) }}" class="button is-info is-fullwidth">Inviter un ami !</a>
+                    <a href="{{ path('event_page', {id: event.id}) }}" class="button is-info is-fullwidth">Inviter un ami !</a>
 
                     {{ form_end(invite_form) }}
                 {% endif %}

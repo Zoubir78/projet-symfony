@@ -4,54 +4,54 @@
 
 {% block content %}
     <div class="section has-background-info-dark">
+        <div class="section has-background-warning">
+            <h1 class="title">Evénements: {{ liste_evenements|length }} </h1>
 
-        <h1 class="title">Evénements: {{ liste_evenements|length }} </h1>
+            {% include 'includes/flash.html.twig' %}
+        
+            <a href="{{ path('event_ajout') }}" class="button is-info">Organiser un événement</a>
 
-        {# Inclusion du fichier des messages flash #}
-        {% include 'includes/flash.html.twig' %}
-       
-        <a href="{{ path('event_ajout') }}" class="button is-info">Organiser un événement</a>
-
-        <table class="table is-fullwidth has-background-warning">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Lieu</th>
-                <th>Date</th>
-                <th>Modifier / Supprimer</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for event in liste_evenements %}    
-                <tr class="table is-fullwidth has-background-warning">
-            
-                    <th>{% include 'event/_event.html.twig' %}</th>
-                    <td>
-                        <a href="{{ path('event_page', {id: event.id}) }}" class="has-text-primary">
-                        <strong>{{ event.name }}</strong>
-                        </a>
-                    </td>
-                    <td>{{ event.description }}</td>
-                    <td>{{ event.place }}</td>
-                    <td>{{ event.date | date('d-m-Y')}}</td>
-                    <td>
-                        <a href="{{ path('event_modif', {id: event.id}) }}" class="button is-success">
-                            <span class="icon">
-                                <i class="fas fa-edit"></i>
-                            </span>
-                        </a>
-                        <a href="{{ path('event_supprimer', {id: event.id}) }}" class="button is-danger">
-                            <span class="icon">
-                                <i class="fas fa-trash-alt"></i>   
-                            </span>
-                        </a>
-                    </td>
+            <table class="table is-fullwidth has-background-warning">
+                <thead>
+                <tr class="has-background-light">
+                    <th></th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Lieu</th>
+                    <th>Date</th>
+                    <th>Modifier / Supprimer</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table> 
+                </thead>
+                <tbody>
+                {% for event in liste_evenements %}    
+                    <tr class="table is-fullwidth has-background-warning">
+                
+                        <th>{% include 'event/_event.html.twig' %}</th>
+                        <td>
+                            <a href="{{ path('event_page', {id: event.id}) }}" class="has-text-primary">
+                            <strong>{{ event.name }}</strong>
+                            </a>
+                        </td>
+                        <td>{{ event.description }}</td>
+                        <td>{{ event.place }}</td>
+                        <td>{{ event.date | date('d-m-Y')}}</td>
+                        <td>
+                            <a href="{{ path('event_modif', {id: event.id}) }}" class="button is-success">
+                                <span class="icon">
+                                    <i class="fas fa-edit"></i>
+                                </span>
+                            </a>
+                            <a href="{{ path('event_supprimer', {id: event.id}) }}" class="button is-danger">
+                                <span class="icon">
+                                    <i class="fas fa-trash-alt"></i>   
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table> 
+        </div>
     </div>
 
 {% endblock %}

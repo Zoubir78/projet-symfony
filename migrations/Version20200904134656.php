@@ -22,7 +22,7 @@ final class Version20200904134656 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('DROP TABLE participe');
         $this->addSql('ALTER TABLE event ADD token VARCHAR(255) DEFAULT NULL');
-        $this->addSql('UPDATE event SET token = SUBSTR(HEX(SHA2(CONCAT(NOW(), RAND(), UUID()), 256)), 1, 50)');
+        $this->addSql('UPDATE event SET token = SUBSTR(HEX(SHA2(CONCAT(NOW(), RAND(), UUID()), 256)), 1, 20)');
         $this->addSql('ALTER TABLE event MODIFY token VARCHAR(255) NOT NULL');
 
     }

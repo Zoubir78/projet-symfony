@@ -46,9 +46,15 @@ class User implements UserInterface
      */
     private $pseudo;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Invite::class, mappedBy="email")
+     */
+    private $invites;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
+        $this->invites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,6 +174,37 @@ class User implements UserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Invite[]
+     */
+    public function getInvites(): Collection
+    {
+        return $this->invites;
+    }
+
+    public function addInvite(Invite $invite): self
+    {
+        if (!$this->invites->contains($invite)) {
+            $this->invites[] = $invite;
+            $invite->setEmail($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvite(Invite $invite): self
+    {
+        if ($this->invites->contains($invite)) {
+            $this->invites->removeElement($invite);
+            // set the owning side to null (unless already changed)
+            if ($invite->getEmail() === $this) {
+                $invite->setEmail(null);
+            }
+        }
 
         return $this;
     }

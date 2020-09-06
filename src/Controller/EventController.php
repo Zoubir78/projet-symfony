@@ -117,7 +117,7 @@ class EventController extends AbstractController
     }
 
      /**
-     * @Route("/invite/{id}", name="invite")
+     * @Route("/{id}/page", name="page")
      * @IsGranted("ROLE_USER")
      */
     public function inviter(Event $event, Request $request, EntityManagerInterface $entityManager)
@@ -126,7 +126,9 @@ class EventController extends AbstractController
         $inviteForm->handleRequest($request);
 
         if ($inviteForm->isSubmitted() && $inviteForm->isValid()) {
-            $event = $inviteForm->getData();
+            $email = $inviteForm->getData();
+
+            $entityManager->persist($email);
             $entityManager->flush();
             
             $this->addFlash('success', 'Votre invitation a été envoyée.');
