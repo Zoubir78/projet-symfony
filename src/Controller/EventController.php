@@ -38,7 +38,7 @@ class EventController extends AbstractController
         if ($this->getUser()) {
             
             $event = $repository->findOneBy([
-                'author' => $this->getUser()
+                'author' => $this->getUser(),
             ]);
 
             // Si l'événement n'existe pas, on en crée un
@@ -61,7 +61,7 @@ class EventController extends AbstractController
                 return $this->redirectToRoute('event_list', ['id' => $event->getId()]);
             }
             return $this->render('event/ajout.html.twig', [
-                'event' => $event,
+                // 'event' => $event,
                 'event_form' => $form->createView()
             ]);
         }
