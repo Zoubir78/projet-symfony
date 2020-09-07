@@ -131,6 +131,10 @@ class EventController extends AbstractController
                 ->context([
                     'event' => $event,
             ]);
+
+            // $email->Host = "ssl://smtp.sendgrid.net:465"; // specify main and backup server
+            // $email->SMTPSecure = "tls";
+            // $email->SMTPAuth = true;
             
             $mailer->send($email);
             $this->addFlash('success', 'Votre invitation a été envoyée.');
