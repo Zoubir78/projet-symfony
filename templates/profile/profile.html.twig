@@ -10,8 +10,8 @@
 
         {% include 'includes/flash.html.twig' %}
 
-        <div class="columns">
-            <div class="column">
+        <div class="columns is-centered section has-background-info-dark">
+            <div class="column has-background-warning is-one-third">
                 <h3 class="subtitle">Mes infos</h3>
 
                 {{ form_start(profile_form) }}
@@ -30,7 +30,7 @@
 
                 {{ form_end(profile_form) }}
             </div>
-            <div class="column">
+            <div class="column has-background-warning is-one-third">
                 <h3 class="subtitle">Mot de passe du compte</h3>
 
                 {{ form_start(password_form) }}
