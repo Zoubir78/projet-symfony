@@ -111,39 +111,5 @@ class EventController extends AbstractController
             'event' => $event
         ]);
     }
-
-     /**
-     * Email d'invitation
-     * @Route("/{id}/page", name="page")
-     * @IsGranted("ROLE_USER")
-     */
-    public function inviter(Event $event, Request $request, MailerInterface $mailer)
-    {
-        $inviteForm = $this->createForm(InviteFormType::class);
-        $inviteForm->handleRequest($request);
-
-        if ($inviteForm->isSubmitted() && $inviteForm->isValid()) {
-            $email = (new TemplatedEmail())
-                ->from(new Address('noreply@evently.com', 'My-Event'))
-                ->to(new Address($inviteForm['email']->getData()))
-                ->subject(sprintf('%s My-Event | Invitation à "%s"', "\u{1F5D3}", $event->getName()))
-                ->htmlTemplate('emails/invitation.html.twig')
-                ->context([
-                    'event' => $event,
-            ]);
-
-            // $email->Host = "ssl://smtp.sendgrid.net:465"; // specify main and backup server
-            // $email->SMTPSecure = "tls";
-            // $email->SMTPAuth = true;
-            
-            $mailer->send($email);
-            $this->addFlash('success', 'Votre invitation a été envoyée.');
-            return $this->redirectToRoute('event_page', ['id' => $event->getId()]);
-        }
-        return $this->render('event/event_page.html.twig', [
-            'event' => $event,
-            'invite_form' => $inviteForm->createView(),
-        ]);
-    }
 }
 

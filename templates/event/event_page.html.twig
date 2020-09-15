@@ -6,10 +6,10 @@
 
 {% block content %}
     <div class="section has-background-info-dark">
-        <div class="columns has-background-warning">
-            <div class="column is-two-fifth">
+        <div class="columns box has-background-warning">
+            <div class="column box is-two-fifth">
                 <figure class="image is-1by1">
-                    <img src="https://loremflickr.com/1024/1024/art/all?lock={{ event.id }}">
+                    <img src="https://loremflickr.com/1024/1024/conference,office/all?lock={{ event.id }}">
                 </figure>
             </div>
             <div class="column">
@@ -18,25 +18,7 @@
                 <h3 class="subtitle">Description: <i>{{ event.description }}</i></h3>
                 <h5 class="subtitle">Date: {{ event.date | date('d-m-Y')}}</h5>
 
-                <a href="{{ path('participe', {id: event.id}) }}" class="button is-info is-fullwidth">Je participe !</a>
-            </div>
-            <div class="column">
-                <h2 class="subtitle">Invitations</h2>
-                <p><i>Inviter un ami pour participer à cet événement ...</i></p>
-                <br>
-                {% include 'includes/flash.html.twig' %}
-                <br>
-                {% if invite_form is defined %}
-                    {{ form_start(invite_form) }}
-
-                    {{ form_row(invite_form.email, {
-                        label: 'Adresse email:'
-                    }) }}
-
-                    <button type="submit" class="button is-info is-fullwidth">Inviter un ami !</button>
-
-                    {{ form_end(invite_form) }}
-                {% endif %}
+                <a href="{{ path('event_participate', {id: event.id}) }}" class="button is-info is-fullwidth">Participez à cet événement !</a>
             </div>
         </div>
     </div>

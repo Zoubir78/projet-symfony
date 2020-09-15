@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -38,6 +40,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Event::class, mappedBy="author", orphanRemoval=true)
+     * @ORM\OrderBy({"date" = "DESC"})
      */
     private $events;
 
@@ -47,14 +50,14 @@ class User implements UserInterface
     private $pseudo;
 
     /**
-     * @ORM\OneToMany(targetEntity=Invite::class, mappedBy="email")
+     * @ORM\ManyToMany(targetEntity=Event::class, inversedBy="participants")
      */
-    private $invites;
+    private $participations;
 
     public function __construct()
     {
         $this->events = new ArrayCollection();
-        $this->invites = new ArrayCollection();
+        $this->participations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -179,31 +182,26 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Invite[]
+     * @return Collection|Event[]
      */
-    public function getInvites(): Collection
+    public function getParticipations(): Collection
     {
-        return $this->invites;
+        return $this->participations;
     }
 
-    public function addInvite(Invite $invite): self
+    public function addParticipation(Event $participation): self
     {
-        if (!$this->invites->contains($invite)) {
-            $this->invites[] = $invite;
-            $invite->setEmail($this);
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
         }
 
         return $this;
     }
 
-    public function removeInvite(Invite $invite): self
+    public function removeParticipation(Event $participation): self
     {
-        if ($this->invites->contains($invite)) {
-            $this->invites->removeElement($invite);
-            // set the owning side to null (unless already changed)
-            if ($invite->getEmail() === $this) {
-                $invite->setEmail(null);
-            }
+        if ($this->participations->contains($participation)) {
+            $this->participations->removeElement($participation);
         }
 
         return $this;

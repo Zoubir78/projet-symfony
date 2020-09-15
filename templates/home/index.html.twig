@@ -6,17 +6,23 @@
 
 {% block content %}
     <div class="section has-background-info-dark">
-        <div class="section has-background-warning">
+        <div class="box has-background-warning is-vcentered">
             <h1 class="title">Accueil</h1>
             <br>
             <h2 class="subtitle is-selected">Bienvenue sur <strong>MY-EVENT !</strong> </h2>
             <h3 class="subtitle">Une application faite pour vous, commencez d'organiser vos événements ... </h3>
+
+            {# {% include 'includes/pagination.html.twig' with {
+                current: pagination_current,
+                total: events|length,
+                offset: pagination_offset
+            } %} #}
         </div>
         {% include 'includes/flash.html.twig' %}
         <br>
-        <div class="section has-background-warning">
-  
-            <h1 class="title">Contact</h1>
+        <div class="columns is-centered section has-background-info-dark">
+            <div class="column is-one-third box">
+                <h1 class="title">Contact</h1>
 
                 {{ form_start(form) }}
 
@@ -42,7 +48,7 @@
                     <button type="submit" class="button is-success">Envoyer</button>
 
                 {{ form_end(form) }}
-
+            </div>
         </div>
     </div>
 {% endblock %}

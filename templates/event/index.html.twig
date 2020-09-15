@@ -4,13 +4,13 @@
 
 {% block content %}
     <div class="section has-background-info-dark">
-        <div class="section has-background-warning">
+        <div class="box has-background-warning">
             <h1 class="title">Evénements: {{ liste_evenements|length }} </h1>
 
             {% include 'includes/flash.html.twig' %}
         
             <a href="{{ path('event_ajout') }}" class="button is-info">Organiser un événement</a>
-
+            <hr>
             <table class="table is-fullwidth has-background-warning">
                 <thead>
                 <tr class="has-background-light">

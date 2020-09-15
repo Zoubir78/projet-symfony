@@ -1,43 +1,101 @@
-{% extends "_template.html.twig" %}
+{% extends '_template.html.twig' %}
 
-{% block title %}Participations{% endblock %}
+{% block title %}
+    {{ event.name }}
+{% endblock %}
 
 {% block content %}
-    <div class="section has-background-warning">
+    <div class="section has-background-info-dark">
+        <div class="columns has-background-warning">
+            <div class="column">
+                <figure class="image is-1by1">
+                    <img src="https://loremflickr.com/1024/1024/conference,office/all?lock={{ event.id }}">
+                </figure>
+            </div>
 
-        <h1 class="title">Mes participations: {{ liste_participations|length }}</h1>
+            <div class="column is-half">
+                <div class="content">
+                    <h3 class="subtitle">Evenement : {{ event.name }}</h3>
+                    <p><b>Description :</b> <i>{{ event.description }}</i></p>
+                </div>
 
-        {# Inclusion du fichier des messages flash #}
-        {% include 'includes/flash.html.twig' %}
+                    {% if app.user %}
+                        <div class="section pt-0">
+                            {% if is_granted('EVENT_PARTICIPATE', event) %}
+                                <p>Vous participez à cet événement.</p>
+                                <a href="{{ path('event_cancel_participation', {id: event.id, token: csrf_token('event-cancel-participation')}) }}" class="button is-danger is-light is-fullwidth">
+                                    Je ne participe plus.
+                                </a>
+                            {% else %}
+                                <a href="{{ path('event_participate', {id: event.id, token: csrf_token('event-participate')}) }}" class="button is-success is-light is-fullwidth">
+                                    Je participe !
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <h4 class="subtitle has-text-centered">Connectez-vous pour participer !</h4>
+                        <div class="columns">
+                            <div class="column">
+                                <a href="{{ path('app_register') }}" class="button is-info is-light is-fullwidth">
+                                    Inscription
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="{{ path('app_login') }}" class="button is-success is-light is-fullwidth">
+                                    Je me connecte !
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
 
-        <table class="table is-fullwidth">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Annuler</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for event in liste_participations %}    
-                <tr>
-                    <th>{{ event.id }}</th>
-                    <td>
-                        <a href="{{ path('event_page', {id: event.id}) }}">
-                        {{ event.name }}
-                        </a>
-                    </td>
-                    <td>{{ event.description }}</td>
-                    <td>{{ event.date | date('d-m-Y')}}</td>
-                    <td>
-                        <a href="{{ path('annuler', {id: event.id}) }}" class="button is-danger">Annuler</a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table> 
+                <div class="box">
+                    <div class="columns is-vcentered">
+                        <div class="column">
+                            <strong>Organisé par :</strong>
+                            <span class="has-text-primary">{{ event.author.pseudo }}</span>
+                        </div>
+                        <div class="column is-one-fifth">
+                            <figure class="image is-48x48 mb-0">
+                                <img src="https://robohash.org/{{ event.author.pseudo }}?set=set5">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p class="is-size-7 has-text-centered">
+                            Le <strong>{{ event.date|date('d/m/Y') }}</strong>
+                        </p>
+                        <hr>
+
+                        <h5 class="title">Inviter quelqu'un :</h5>
+                        
+                        {# {% if invite_form is defined %} #}
+                            {{ form_start(invite_form) }}
+
+                            {{ form_row(invite_form.email, {
+                                label: 'Adresse email:'
+                            }) }}
+
+                            <button type="submit" class="button is-info is-fullwidth">Inviter un ami !</button>
+
+                            {{ form_end(invite_form) }}
+                        {# {% endif %} #}
+
+                        <hr>
+                        <h5 class="title">Participants : {{ event.participants|length }}</h5>
+                        <div class="columns is-multiline">
+                            {% for participant in event.participants %}
+                                <div class="column is-one-fifth">
+                                    <figure class="image is-48x48 mb-0">
+                                        <img src="https://robohash.org/{{ participant.pseudo }}?set=set5">
+                                    </figure>
+                                    <p class="is-size-7 has-text-centered">{{ participant.pseudo }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 {% endblock %}
+

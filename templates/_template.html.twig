@@ -21,31 +21,33 @@
         <section class="hero info">
             <nav class="navbar">
                 <div id="navbarMenu" class="navbar-menu">
-                    <div class="navbar-end">
-                        <span class="navbar-item">
-                            <a class="button is-white is-outlined" href="{{ path('event_list') }}"> 
-                                <span class="icon">
-                                    <i class="fas fa-clipboard-list"></i>
-                                </span>
-                                <span>Mes événements</span>
-                            </a>
-                        </span>
-                        <span class="navbar-item">
-                            <a class="button is-white is-outlined" href="{{ path('event_ajout') }}">
-                                <span class="icon">
-                                    <i class="fas fa-calendar-plus"></i>
-                                </span>
-                                <span>Nouvel événement</span>
-                            </a>
-                        </span>
-                        <span class="navbar-item">
-                            <a class="button is-white is-outlined" href="{{ path('participe') }}">
-                                <span class="icon">
-                                    <i class="fas fa-newspaper"></i>
-                                </span>
-                                <span>Participations</span>
-                            </a>
-                        </span>                               
+                    <div class="navbar-start">
+                        {% if app.user %}
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined" href="{{ path('event_list') }}"> 
+                                    <span class="icon">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </span>
+                                    <span>Mes événements</span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined" href="{{ path('event_ajout') }}">
+                                    <span class="icon">
+                                        <i class="fas fa-calendar-plus"></i>
+                                    </span>
+                                    <span>Nouvel événement</span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined" href="#">
+                                    <span class="icon">
+                                        <i class="fas fa-newspaper"></i>
+                                    </span>
+                                    <span>Participations</span>
+                                </a>
+                            </span>  
+                        {% endif %}                            
                     </div>
                 </div>
             </nav>

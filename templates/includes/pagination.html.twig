@@ -1,0 +1,25 @@
+{% set total_pages = (total / offset)|round(0, 'ceil') %}
+
+<nav class="pagination is-centered is-small">
+    <a class="pagination-previous" {{ current <= 1 ? 'disabled' : '' }} href="?page={{ current - 1 }}">
+        <span class="icon"><i class="fas fa-chevron-left"></i></span>
+    </a>
+    <a class="pagination-next" {{ current >= total_pages ? 'disabled' : '' }} href="?page={{ current + 1 }}">
+        <span class="icon"><i class="fas fa-chevron-right"></i></span>
+    </a>
+    <ul class="pagination-list">
+        <li><a class="pagination-link" href="?page=1">1</a></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+
+        {% if current > 1 %}
+            <li><a class="pagination-link" href="?page={{ current - 1 }}">{{ current - 1 }}</a></li>
+        {% endif %}
+        <li><a class="pagination-link is-current">{{ current }}</a></li>
+        {% if current < total_pages %}
+            <li><a class="pagination-link" href="?page={{ current + 1 }}">{{ current + 1 }}</a></li>
+        {% endif %}
+
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link" href="?page={{ total_pages }}">{{ total_pages }}</a></li>
+    </ul>
+</nav>
