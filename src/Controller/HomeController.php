@@ -68,11 +68,11 @@ class HomeController extends AbstractController
      */
     public function participate(Event $event, Request $request, EntityManagerInterface $entityManager)
     {
-        // $token = $request->query->get('token');
-        // if (!$this->isCsrfTokenValid('event-participate', $token)) {
-        //     $this->addFlash('success', 'Une erreur est survenue.');
-        //     return $this->redirectToRoute('event_page', ['id' => $event->getId()]);
-        // }
+        $token = $request->query->get('token');
+        if (!$this->isCsrfTokenValid('event-participate', $token)) {
+            $this->addFlash('success', 'Une erreur est survenue.');
+            return $this->redirectToRoute('event_page', ['id' => $event->getId()]);
+        }
 
         /** @var User $user */
         $user = $this->getUser();
@@ -82,11 +82,11 @@ class HomeController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', sprintf('Vous participez désormais à "%s" !', $event->getName()));
-        // return $this->redirectToRoute('event_participate', ['id' => $event->getId()]);
+        return $this->redirectToRoute('event_participate', ['id' => $event->getId()]);
 
-        return $this->render('participe/index.html.twig', [
-            'event' => $event,
-        ]);
+        // return $this->render('participe/index.html.twig', [
+        //     'event' => $event,
+        // ]);
     }
 
     /**

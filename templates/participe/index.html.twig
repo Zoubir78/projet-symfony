@@ -19,6 +19,7 @@
                     <p><b>Description :</b> <i>{{ event.description }}</i></p>
                 </div>
 
+                {% include 'includes/flash.html.twig' %}
                     {% if app.user %}
                         <div class="section pt-0">
                             {% if is_granted('EVENT_PARTICIPATE', event) %}
