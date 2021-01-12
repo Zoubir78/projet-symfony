@@ -87,9 +87,9 @@
                             {% for participant in event.participants %}
                                 <div class="column is-one-fifth">
                                     <figure class="image is-48x48 mb-0">
-                                        <img src="https://robohash.org/{{ participant.pseudo }}?set=set5">
+                                        <img src="https://robohash.org/{{ participant.username }}?set=set5">
                                     </figure>
-                                    <p class="is-size-7 has-text-centered">{{ participant.pseudo }}</p>
+                                    <p class="is-size-7 has-text-centered">{{ participant.username }}</p>
                                 </div>
                             {% endfor %}
                         </div>

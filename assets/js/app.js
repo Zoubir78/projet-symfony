@@ -3,3 +3,4 @@ require('../css/app.scss');
 
 // Importer le script pour le menu mobile
 require('./menu.js');
+require('./js-plaxify.js');

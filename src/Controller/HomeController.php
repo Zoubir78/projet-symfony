@@ -63,6 +63,18 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("/participations", name="participations_list")
+     * @IsGranted("ROLE_USER")
+     */
+    public function list(Event $event, EventRepository $repository)
+    {
+        return $this->render('participe/participate_list.html.twig', [
+            'event' => $event,
+            'participants' => $repository->findAll(),
+        ]);
+    }
+
+    /**
      * @Route("/event/{id}/participate", name="event_participate")
      * @IsGranted("ROLE_USER")
      */
@@ -84,9 +96,9 @@ class HomeController extends AbstractController
         $this->addFlash('success', sprintf('Vous participez désormais à "%s" !', $event->getName()));
         return $this->redirectToRoute('event_participate', ['id' => $event->getId()]);
 
-        // return $this->render('participe/index.html.twig', [
-        //     'event' => $event,
-        // ]);
+        return $this->render('participe/index.html.twig', [
+            'event' => $event,
+        ]);
     }
 
     /**

@@ -5,50 +5,90 @@
 {% endblock %}
 
 {% block content %}
-    <div class="section has-background-info-dark">
-        <div class="box has-background-warning is-vcentered">
-            <h1 class="title">Accueil</h1>
-            <br>
-            <h2 class="subtitle is-selected">Bienvenue sur <strong>MY-EVENT !</strong> </h2>
-            <h3 class="subtitle">Une application faite pour vous, commencez d'organiser vos événements ... </h3>
+   
+    <main class="section is-fullheight-with-menu has-background-white-ter">
+        <div class="columns is-desktop is-fullwidth is-vcentered" id="banner">
+            <div class="column is-hidden-touch"></div>
 
-            {# {% include 'includes/pagination.html.twig' with {
-                current: pagination_current,
-                total: events|length,
-                offset: pagination_offset
-            } %} #}
+            <div class="column is-fullwidth is-one-third-desktop is-full-mobile">
+                <div class="content">
+                    <h1 class="title has-text-centered is-size-4-touch">
+                        Démonstrateur Obs2RM
+                    </h1>
+                    <h4 class="subtitle has-text-grey has-text-justified is-size-6-touch">
+                        <br>Une application de traitement des données de trafic d'un logiciel d'analyse d'image, ...OD Soft !
+                    <br>
+                    </h4>
+                </div>
+                <div class="buttons has-text-centered">
+                    <a href="#contact" class="button is-link is-light">
+                        <span class="icon is-small">
+                            <i class="fas fa-paper-plane"></i>
+                        </span>
+                        <span>Contact</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="column is-fullwidth is-half-desktop" id="illustration">
+                <img src="https://ml0yx59byvc1.i.optimole.com/Gs6DYt4.yiKZ~4e5a5/w:auto/h:auto/q:90/https://sarasanalytics.com/wp-content/uploads/2020/03/DataEngineering-and-CustomizedDataCollection.png" alt="Illustration">
+            </div>
+
+            <div class="column is-hidden-touch"></div>
         </div>
-        {% include 'includes/flash.html.twig' %}
-        <br>
-        <div class="columns is-centered section has-background-info-dark">
-            <div class="column box">
-                <h1 class="title">Contact</h1>
+    </main>
+    <br>
+    <br>
+    <br>
+    <section id="contact" class="section is-fullheight-expand-tablet has-background-dark">
+        <div class="container">
+            <h2 class="title has-text-light is-size-5-mobile">Contact</h2>
+            <p class="has-text-light is-size-2-mobile">Merci de bien vouloir remplir ce formulaire en cas de problème.</p>
+            <br>
+            <form name="contact_form" method="post">
+                <div class="columns is-tablet">
+                    <div class="column">
+                        <div class="field">                
+                            <label class="has-text-light label required" for="contact_form_name">Nom:</label>
+                        </div>
+                        <div class="control">    
+                            <input type="text" id="contact_form_name" name="contact_form[name]" required="required" class="input">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">                
+                            <label class="has-text-light label required" for="contact_form_email">Email:</label>
+                        </div>
+                    <div class="control">    
+                        <input type="email" id="contact_form_email" name="contact_form[email]" required="required" class="input"></div>
+                    </div>
+                </div>
+                <div class="field">                
+                    <label class="has-text-light label required" for="contact_form_subject">Objet:</label>
+                <div class="control">    
+                    <input type="text" id="contact_form_subject" name="contact_form[subject]" required="required" class="input"></div></div>
 
-                {{ form_start(form) }}
+                    <div class="textarea-no-resize field">                
+                    <label class="has-text-light label required" for="contact_form_message">Message:</label>
+                <div class="control"><textarea id="contact_form_message" name="contact_form[message]" required="required" class="textarea-no-resize textarea"></textarea></div></div>
 
-                    {# {{ form_widget(form) }} #}
-
-                    {{ form_row(form.nom, {
-                        'label': "Nom:",
-                        'attr': {'placeholder': 'Jean Doe'}
-                    }) }}
-                    {{ form_row(form.email, {
-                        'label': 'Adresse email:',
-                        'attr': {'placeholder': 'Adresse email ...'}
-                    }) }}
-                    {{ form_row(form.objet,  {
-                        'label': 'Objet:',
-                        'attr': {'placeholder': 'Saisir votre objet'}
-                    }) }}
-                    {{ form_row(form.message,  {
-                        'label': 'Message:',
-                        'attr': {'placeholder': 'Taper votre message ici'}
-                    }) }}
-
-                    <button type="submit" class="button is-success">Envoyer</button>
-
-                {{ form_end(form) }}
+                <button type="submit" class="button is-primary is-fullwidth">
+                    <span><i class="fas fa-paper-plane"></i> Envoyer</span>
+                </button>
+            
+                <input type="hidden" id="contact_form__token" name="contact_form[_token]" value="orVOcdjiYRcW7_svqUj6IDZwwq_5eV7a5a-NGu6jNq4">
+            </form>
+        </div>
+    </section>
+    <footer id="footer" class="has-background-black has-text-light">
+        <div class="column columns is-tablet is-marginless">
+            <div class="column is-paddingless-y-mobile has-text-centered">
+                <p class="heading">
+                    <span class="icon"><i class="far fa-copyright"></i></span>
+                    Démo - Obs2RM 2021
+                </p>
             </div>
         </div>
-    </div>
+    </footer>
+
 {% endblock %}

@@ -6,9 +6,7 @@
     <nav class="navbar has-background-grey-darker is-dark">
         <div class="navbar-brand">
             <a class="navbar-item" href="{{ path('homepage') }}">
-                <p class="subtitle is-4 has-text-primary">
-                    <i class="fa fa-calendar-check-o" style="font-size:36px;color:yellow"></i> <b>MY-EVENT</b>
-                </p>
+                <img src="https://lh3.googleusercontent.com/proxy/TxgOH-T_SCejxCQ__n9RtD1-r-Rg95JSoRBlUrgtBXd4Jqvjb038-pwrbMFAa26WRrxLAx656qLkf0k2Lnju-G719s_UETNGndkYZCW-FOhkgaLpyAr8K8VyBBVw0mht-hBnMe1ZaNES" width="40">
             </a>
 
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -21,27 +19,61 @@
             <div class="navbar-start">
                 {% if app.user %}
                     <span class="navbar-item">
-                        <a class="button is-white is-outlined" href="{{ path('event_list') }}"> 
+                        <a class="button is-white is-outlined" href=""> 
                             <span class="icon">
-                                <i class="fas fa-clipboard-list"></i>
+                                <i class="fas fa-hourglass-half"></i>
                             </span>
-                            <span>Mes événements</span>
+                            <span>Importation des données</span>
                         </a>
                     </span>
                     <span class="navbar-item">
-                        <a class="button is-white is-outlined" href="{{ path('event_ajout') }}">
+                        <a class="button is-white is-outlined" href="">
                             <span class="icon">
-                                <i class="fas fa-calendar-plus"></i>
+                                <i class="fas fa-filter"></i>
                             </span>
-                            <span>Nouvel événement</span>
+                            <span>Filtrage</span>
                         </a>
                     </span>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <span class="navbar-link">
+                            <a class="button is-white is-outlined" href="">
+                                <span class="icon">
+                                    <i class="fas fa-database"></i>
+                                </span>
+                                <span>Mise en BDD</span>
+                            </a>
+                            <div class="navbar-dropdown">
+                                <a class="button is-dark is-outlined" href="">
+                                    <span class="icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </span>
+                                    <span>Données/Indicateurs</span>
+                                </a>
+                            </div>
+                        </span>
+                    </div>
                     <span class="navbar-item">
-                        <a class="button is-white is-outlined" href="#">
+                        <a class="button is-white is-outlined" href="">
                             <span class="icon">
-                                <i class="fas fa-newspaper"></i>
+                                <i class="fas fa-cogs"></i>
                             </span>
-                            <span>Participations</span>
+                            <span>Traitement</span>
+                        </a>
+                    </span>  
+                    <span class="navbar-item">
+                        <a class="button is-white is-outlined" href="">
+                            <span class="icon">
+                                <i class="far fa-chart-bar"></i>
+                            </span>
+                            <span>Graphique</span>
+                        </a>
+                    </span>  
+                     <span class="navbar-item">
+                        <a class="button is-white is-outlined" href="">
+                            <span class="icon">
+                                <i class="fas fa-file-download"></i>
+                            </span>
+                            <span>Télécharger le CSV</span>
                         </a>
                     </span>  
                 {% endif %}                            

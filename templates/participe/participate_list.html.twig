@@ -1,0 +1,15 @@
+{% extends '_template.html.twig' %}
+
+{% block title %}
+    {# Mes participations: {{ organized_events|length }} #}
+{% endblock %}
+
+{% block content %}
+    {# {% include 'includes/event_list.html.twig' with {event_list: organized_events} %} #}
+
+    {% include 'includes/pagination.html.twig' with {
+        current: pagination_current,
+        total: organized_events|length,
+        offset: pagination_offset
+    } %}
+{% endblock %}
